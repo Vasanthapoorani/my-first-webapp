@@ -11,7 +11,7 @@ node {
             sh 'docker login -u vasanthapoorani --password Manikanth@16'        
        }          
         stage('Push image') {
-             docker.withRegistry('https://hub.docker.com/repository/docker/vasanthapoorani/task1_jenkins', 'docker_hub') {                   
+             docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {                   
              app.push("${env.BUILD_NUMBER}")                    
               }    
            }
