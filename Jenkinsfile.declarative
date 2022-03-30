@@ -1,5 +1,11 @@
 pipeline {   
   agent any 
+  stage('Cloning Git') {
+      steps {
+        git([url: 'https://github.com/Vasanthapoorani/my-first-webapp.git', branch: 'master'])
+
+      }     
+    }
   stages {         
     stage('Build Docker Image') {         
       steps{                
