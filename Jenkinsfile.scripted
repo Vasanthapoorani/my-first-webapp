@@ -1,0 +1,18 @@
+node {    
+      def app     
+      stage('Clone repository') {               
+            checkout scm    
+      }           
+      stage('Build image') {         
+       
+            app = docker.build("vasanthapoorani/task1_jenkins:$BUILD_NUMBER")    
+       }           
+       stage('Login to Docker Hub') {         
+            sh 'docker login -u vasanthapoorani --password Manikanth@16'        
+       }          
+        stage('Push image') {
+             docker.withRegistry('https://hub.docker.com/repository/docker/vasanthapoorani/task1_jenkins', 'docker_hub') {                   
+             app.push("${env.BUILD_NUMBER}")                    
+              }    
+           }
+        }
