@@ -6,10 +6,7 @@ node {
       stage('Build image') {         
        
             app = docker.build("vasanthapoorani/task1_jenkins:$BUILD_NUMBER")    
-       }           
-       stage('Login to Docker Hub') {         
-            sh 'docker login -u vasanthapoorani --password Manikanth@16'        
-       }          
+       }                   
         stage('Push image') {
              docker.withRegistry('https://registry.hub.docker.com', 'docker_hub') {                   
              app.push("${env.BUILD_NUMBER}")                    
