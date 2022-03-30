@@ -16,8 +16,7 @@ pipeline {
       steps{ 
       script {
       dockerImage = docker.build imagename
-      }       
-	#sh 'docker build -t vasanthapoorani/task1_jenkins:$BUILD_NUMBER .'           
+      }              
         echo 'Build Image Completed'                
       }           
     }
