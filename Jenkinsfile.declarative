@@ -1,4 +1,9 @@
 pipeline {   
+  environment {
+  imagename = "vasanthapoorani/task1_jenkins"
+  registryCredential = 'docker_hub' 
+  dockerImage = ''
+  }
   agent any 
   stages {    
     stage('Cloning Git') {
@@ -8,20 +13,23 @@ pipeline {
       }     
     }
     stage('Build Docker Image') {         
-      steps{                
-	      sh 'docker build -t vasanthapoorani/task1_jenkins:$BUILD_NUMBER .'           
+      steps{ 
+      script {
+      dockerImage = docker.build imagename
+      }       
+	#sh 'docker build -t vasanthapoorani/task1_jenkins:$BUILD_NUMBER .'           
         echo 'Build Image Completed'                
       }           
     }
-    stage('Login to Docker Hub') {         
-      steps{                            
-	      sh 'docker login -u vasanthapoorani --password Manikanth@16'                 
-	      echo 'Docker Hub Login Completed'                
-      }           
-    }               
+               
     stage('Push Image to Docker Hub') {         
       steps{                            
-	      sh 'docker push vasanthapoorani/task1_jenkins:$BUILD_NUMBER'                 
+	     script {
+	     docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) 
+	     {
+	     dockerImage.push("$BUILD_NUMBER")
+	     }         
+	     }
         echo 'Push Image Completed'       
       }           
     }      
