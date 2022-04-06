@@ -32,7 +32,7 @@ pipeline {
     stage ('K8S Deploy') {
        steps{                            
 	     script {
-		sh 'env'
+		sh 'aws-iam-authenticator'
 		sh 'aws eks update-kubeconfig --name my-first-eks-clus-v1 --region eu-west-1'
 		sh 'kubectl apply -f deployment-definition.yaml'
          }
