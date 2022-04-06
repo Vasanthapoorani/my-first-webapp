@@ -26,6 +26,18 @@ pipeline {
         echo 'Push Image Completed'       
       }           
     }      
+    
+    stage ('K8S Deploy') {
+       steps{                            
+	     script {
+                kubernetesDeploy(
+                    configs: 'deployment-definition.yaml',
+                    kubeconfigId: 'k8s',
+                    enableConfigSubstitution: true
+                    )               
+         }
+       }
+     }
   }
   post{
     always {  
