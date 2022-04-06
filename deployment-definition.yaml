@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: task1-deployment
+  name: task1deployment
   labels:
     app: task1
 spec:
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: task1-service
+  name: task1service
 spec:
   selector:
     app: task1
