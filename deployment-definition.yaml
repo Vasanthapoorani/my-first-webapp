@@ -18,7 +18,7 @@ spec:
       - name: taskjenkins
         image: vasanthapoorani/task1_jenkins:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         
 ---
   
@@ -30,7 +30,7 @@ spec:
   selector:
     app: task1
   ports:
-    - port: 8765
-      nodePort: 30163
-      targetPort: 9376
-  type: LoadBalancer
+    - port: 8080
+      nodePort: 30001
+      targetPort: 8080
+  type: NodePort
