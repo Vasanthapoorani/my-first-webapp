@@ -1,5 +1,7 @@
 pipeline {   
   environment {
+  keyId = 'aws_access_key_id'
+  keyValue = 'aws_secret_access_key'
   imagename = "vasanthapoorani/task1_jenkins"
   registryCredential = 'docker_hub' 
   dockerImage = ''
@@ -30,11 +32,9 @@ pipeline {
     stage ('K8S Deploy') {
        steps{                            
 	     script {
-                kubernetesDeploy(
-                    configs: 'deployment-definition.yaml',
-                    kubeconfigId: 'k8s',
-                    enableConfigSubstitution: true
-                    )               
+                sh 'export aws_access_key_id=keyId'
+                sh 'export aws_secret_access_key=keyValue'         
+		sh 'kubectl apply -f deployment-definition.yaml'
          }
        }
      }
