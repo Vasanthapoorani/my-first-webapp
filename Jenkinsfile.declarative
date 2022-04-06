@@ -33,7 +33,8 @@ pipeline {
        steps{                            
 	     script {
                 sh 'export aws_access_key_id=keyId'
-                sh 'export aws_secret_access_key=keyValue'         
+                sh 'export aws_secret_access_key=keyValue'    
+		sh 'aws eks update-kubeconfig --name my-first-eks-clus-v1 --region eu-west-1'
 		sh 'kubectl apply -f deployment-definition.yaml'
          }
        }
