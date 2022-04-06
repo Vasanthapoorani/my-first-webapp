@@ -5,7 +5,6 @@ metadata:
   labels:
     app: task1
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: task1
