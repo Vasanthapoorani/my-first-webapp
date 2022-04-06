@@ -19,3 +19,18 @@ spec:
         image: vasanthapoorani/task1_jenkins:8
         ports:
         - containerPort: 80
+        
+  ---
+  
+apiVersion: v1
+kind: Service
+metadata:
+  name: task1-service
+spec:
+  selector:
+    app: task1
+  ports:
+    - port: 8765
+      nodePort: 30163
+      targetPort: 9376
+  type: LoadBalancer
