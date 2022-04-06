@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: task1deployment
+  name: taskdeployment
   labels:
     app: task1
 spec:
@@ -15,7 +15,7 @@ spec:
         app: task1
     spec:
       containers:
-      - name: task1_jenkins
+      - name: taskjenkins
         image: vasanthapoorani/task1_jenkins:latest
         ports:
         - containerPort: 80
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: task1service
+  name: taskservice
 spec:
   selector:
     app: task1
