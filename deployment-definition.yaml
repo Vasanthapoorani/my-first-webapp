@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task1-deployment
+  labels:
+    app: task1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: task1
+  template:
+    metadata:
+      labels:
+        app: task1
+    spec:
+      containers:
+      - name: task1_jenkins
+        image: vasanthapoorani/task1_jenkins:8
+        ports:
+        - containerPort: 80
