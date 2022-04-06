@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
       - name: task1_jenkins
-        image: vasanthapoorani/task1_jenkins:8
+        image: vasanthapoorani/task1_jenkins:latest
         ports:
         - containerPort: 80
         
-  ---
+---
   
 apiVersion: v1
 kind: Service
